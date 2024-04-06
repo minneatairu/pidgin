@@ -45,5 +45,25 @@ document.addEventListener('DOMContentLoaded', () => {
       const nextTrack = (currentTrack + 1) % playlistItems.length;
       playTrack(nextTrack);
     });
+
+    const progressBar = document.getElementById('progressBar');
+
+    // Function to update the progress bar based on the current time
+    function updateProgressBar() {
+      const percentage = (audio.currentTime / audio.duration) * 100;
+      progressBar.value = percentage;
+      progressBar.setAttribute('max', 100);
+    }
+  
+    // Update the progress bar while the audio is playing
+    audio.addEventListener('timeupdate', updateProgressBar);
+  
+    // Seek functionality
+    progressBar.addEventListener('input', () => {
+      const time = (progressBar.value * audio.duration) / 100;
+      audio.currentTime = time;
+    });
+
+    
   });
   

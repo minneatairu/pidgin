@@ -35,4 +35,28 @@
   #playlist li.playing {
     background-color: #FBC02D; /* Darker yellow */
   }
+  /* Existing styles ... */
+
+.controls input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    margin: 10px 0;
+  }
+  
+  .controls input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #FDD835; /* Match the button color */
+    cursor: pointer;
+  }
+  
+  .controls input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    background: #FFF176; /* Lighter yellow for the track */
+    border-radius: 5px;
+  }
   

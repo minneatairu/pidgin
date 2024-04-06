@@ -11,9 +11,11 @@
     <div id="audioPlayer" class="audio-player">
         <audio id="audio"></audio>
         <div class="controls">
-          <button id="playPauseBtn">Play</button>
-          <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5"/>
-        </div>
+            <button id="playPauseBtn">Play</button>
+            <input type="range" id="progressBar" value="0" step="1">
+            <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5"/>
+          </div>
+          
         <ul id="playlist">
           <li data-src="sound.mp3">Wetin be Bini Bronze?</li>
           <li data-src="track3.mp3">Wetin be Igún?</li>
