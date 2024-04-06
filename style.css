@@ -4,6 +4,13 @@
 
 border: 1px dotted;
   }
+  .track-title {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #333; /* Or any color that fits your design */
+    font-size: 16px; /* Adjust size as needed */
+  }
   
   .controls button, .controls input[type=range] {
     margin-bottom: 10px;

@@ -15,16 +15,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentTrack = 0;
   
     function playTrack(index) {
-      if (index < 0 || index >= playlistItems.length) return;
-      if (currentTrack !== index) {
-        playlistItems[currentTrack].classList.remove('playing');
-        currentTrack = index;
+        if (index < 0 || index >= playlistItems.length) return;
+        if (currentTrack !== index) {
+          playlistItems[currentTrack].classList.remove('playing');
+          currentTrack = index;
+        }
+        const trackTitle = document.getElementById('trackTitle');
+        audio.src = playlistItems[currentTrack].getAttribute('data-src');
+        trackTitle.textContent = playlistItems[currentTrack].textContent; // Update the track title
+        audio.play();
+        playPauseIcon.textContent = 'pause'; // Correctly update the icon here
+        playlistItems[currentTrack].classList.add('playing');
       }
-      audio.src = playlistItems[currentTrack].getAttribute('data-src');
-      audio.play();
-      playPauseIcon.textContent = 'pause'; // Correctly update the icon here
-      playlistItems[currentTrack].classList.add('playing');
-    }
+      
   
     // Consolidate play/pause button logic
     playPauseBtn.addEventListener('click', () => {
