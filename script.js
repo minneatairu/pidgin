@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const nextBtn = document.getElementById('nextBtn');
     const prevBtn = document.getElementById('prevBtn');
-    const muteBtn = document.getElementById('muteBtn');
   
+
 
     let playlistItems = document.querySelectorAll('#playlist li');
     let currentTrack = 0;
@@ -115,9 +115,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   nextBtn.addEventListener('click', playNextTrack);
   prevBtn.addEventListener('click', playPreviousTrack);
-  muteBtn.addEventListener('click', () => {
-    audio.muted = !audio.muted; // Toggle the muted state
-    muteBtn.innerHTML = audio.muted ? '<i class="material-icons">volume_off</i>' : '<i class="material-icons">volume_up</i>';
-  });
   });
   
