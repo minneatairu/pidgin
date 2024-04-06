@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const playPauseBtn = document.getElementById('playPauseBtn');
     const playPauseIcon = playPauseBtn.querySelector('i'); // Get the icon element
     const volumeControl = document.getElementById('volumeControl');
+    const currentTimeElement = document.getElementById('currentTime');
+    const totalDurationElement = document.getElementById('totalDuration');
+
     let playlistItems = document.querySelectorAll('#playlist li');
     let currentTrack = 0;
   
@@ -62,5 +65,28 @@ document.addEventListener('DOMContentLoaded', () => {
       const time = (progressBar.value * audio.duration) / 100;
       audio.currentTime = time;
     });
+
+
+  // Function to format time in minutes and seconds
+  function formatTime(time) {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  }
+
+  // Display total duration
+  audio.addEventListener('loadedmetadata', () => {
+    totalDurationElement.textContent = formatTime(audio.duration);
+  });
+
+  // Update current time
+  audio.addEventListener('timeupdate', () => {
+    currentTimeElement.textContent = formatTime(audio.currentTime);
+
+    // Also update the progress bar
+    const percentage = (audio.currentTime / audio.duration) * 100;
+    progressBar.value = percentage;
+    progressBar.setAttribute('max', 100);
+  });
   });
   

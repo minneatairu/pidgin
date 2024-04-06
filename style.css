@@ -56,6 +56,13 @@ border: 1px dotted;
     width: 100%;
     height: 1px;
     background: #000; /* Lighter yellow for the track */
-    border-radius: 5px;
+
   }
+
+  /* Add to your existing styles */
+#currentTime, #totalDuration {
+    margin: 0 10px;
+    color: #333; /* Adjust color to match your design */
+  }
+  
   
