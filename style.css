@@ -5,15 +5,34 @@
     border-radius: 5px;
   }
   
+  .controls button, .controls input[type=range] {
+    margin-bottom: 10px;
+  }
+  
   .controls button {
     background-color: #FDD835; /* Slightly darker yellow */
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-    margin-right: 5px;
   }
   
   .controls input[type=range] {
     vertical-align: middle;
+  }
+  
+  #playlist {
+    list-style: none;
+    padding: 0;
+  }
+  
+  #playlist li {
+    padding: 5px;
+    background-color: #FFF176; /* Light yellow */
+    cursor: pointer;
+    margin-top: 2px;
+  }
+  
+  #playlist li.playing {
+    background-color: #FBC02D; /* Darker yellow */
   }
   
