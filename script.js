@@ -64,6 +64,19 @@ document.addEventListener('DOMContentLoaded', () => {
       audio.currentTime = time;
     });
 
-    
+    const audio = document.getElementById('audio');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    // Existing JavaScript setup...
+  
+    playPauseBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playPauseBtn.textContent = 'pause'; // Change to pause icon
+      } else {
+        audio.pause();
+        playPauseBtn.textContent = 'play_arrow'; // Change to play icon
+      }
+    });
+  
   });
   
