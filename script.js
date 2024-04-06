@@ -52,19 +52,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   
     const progressBar = document.getElementById('progressBar');
-  
+
+    // Function to update the progress bar based on the current time
     function updateProgressBar() {
       const percentage = (audio.currentTime / audio.duration) * 100;
-      progressBar.value = percentage;
-      progressBar.setAttribute('max', 100);
+      progressBar.style.width = percentage + '%';
     }
   
     audio.addEventListener('timeupdate', updateProgressBar);
   
-    progressBar.addEventListener('input', () => {
-      const time = (progressBar.value * audio.duration) / 100;
-      audio.currentTime = time;
+    // Function to allow clicking on the progress bar to seek
+    const progressContainer = document.getElementById('progressContainer');
+    progressContainer.addEventListener('click', (e) => {
+      const clickPosition = (e.offsetX / progressContainer.offsetWidth) * audio.duration;
+      audio.currentTime = clickPosition;
     });
+  
 
 
   // Function to format time in minutes and seconds

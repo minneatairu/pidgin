@@ -16,6 +16,20 @@ border: 1px dotted;
     padding: 5px 10px;
     cursor: pointer;
   }
+  .progress-container {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0; /* Light gray for the background */
+    border-radius: 5px;
+    margin: 10px 0;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background-color: #FBC02D; /* Yellow color for the progress */
+    width: 0%; /* Initial width */
+    border-radius: 5px;
+  }
   
   .controls input[type=range] {
     vertical-align: middle;
