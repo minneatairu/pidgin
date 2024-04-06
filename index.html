@@ -8,14 +8,14 @@
 </head>
 <body>
 
-<div id="audioPlayer">
-    <audio id="audio" preload="auto" controls type="audio/mpeg"></audio>
-    <ul id="playlist">
-        <li class="active"><a href="track1.mp3">Track 1</a></li>
-        <li><a href="track2.mp3">Track 2</a></li>
-        <li><a href="track3.mp3">Track 3</a></li>
-    </ul>
-</div>
+    <div id="audioPlayer" class="audio-player">
+        <audio id="audio" src="your-audio-file.mp3"></audio>
+        <div class="controls">
+          <button id="playPauseBtn">Play/Pause</button>
+          <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5"/>
+        </div>
+      </div>
+      
 
 <script src="script.js"></script>
 </body>
