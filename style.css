@@ -61,7 +61,17 @@ border: 1px dotted;
     width: 100%;
     margin: 10px 0;
   }
+  .controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Adjust the space between buttons as needed */
+  }
   .controls input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
