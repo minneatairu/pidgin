@@ -10,7 +10,6 @@ border: 1px dotted;
   }
   
   .controls button {
-    background-color: #FDD835; /* Slightly darker yellow */
     border: none;
     padding: 5px 10px;
     cursor: pointer;
