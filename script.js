@@ -115,5 +115,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   nextBtn.addEventListener('click', playNextTrack);
   prevBtn.addEventListener('click', playPreviousTrack);
+
+  const muteBtn = document.getElementById('muteBtn');
+  let isMuted = false; // Tracks the mute state
+
+  muteBtn.addEventListener('click', () => {
+    isMuted = !isMuted; // Toggle the mute state
+    audio.muted = isMuted; // Apply the mute state to the audio element
+    muteBtn.querySelector('i').textContent = isMuted ? 'volume_off' : 'volume_up'; // Update the button icon
+  });
+
+  
   });
   
