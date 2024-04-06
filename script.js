@@ -75,6 +75,14 @@ document.addEventListener('DOMContentLoaded', () => {
     progressContainer.addEventListener('click', (e) => {
       const clickPosition = (e.offsetX / progressContainer.offsetWidth) * audio.duration;
       audio.currentTime = clickPosition;
+      const currentTime = audio.currentTime;
+      const currentCaption = captions.find(caption => currentTime >= caption.start && currentTime <= caption.end);
+      
+      if (currentCaption) {
+        captionsElement.textContent = currentCaption.text;
+      } else {
+        captionsElement.textContent = ''; // Clear the caption if there's no match
+      }
     });
   
 
@@ -125,6 +133,12 @@ document.addEventListener('DOMContentLoaded', () => {
     muteBtn.querySelector('i').textContent = isMuted ? 'volume_off' : 'volume_up'; // Update the button icon
   });
 
+  const captions = [
+    { start: 0, end: 5, text: "Welcome to our audio presentation." },
+    { start: 5, end: 10, text: "We're glad you're here with us." },
+    { start: 10, end: 15, text: "Let's explore the main topic." },
+    // Add more captions as needed...
+  ];
   
   });
   
