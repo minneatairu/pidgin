@@ -2,37 +2,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const audio = document.getElementById('audio');
     const playPauseBtn = document.getElementById('playPauseBtn');
     const playPauseIcon = playPauseBtn.querySelector('i'); // Get the icon element
-    const volumeControl = document.getElementById('volumeControl');
     const currentTimeElement = document.getElementById('currentTime');
     const totalDurationElement = document.getElementById('totalDuration');
-
+  
     const nextBtn = document.getElementById('nextBtn');
     const prevBtn = document.getElementById('prevBtn');
+    const muteBtn = document.getElementById('muteBtn');
   
-
-
     let playlistItems = document.querySelectorAll('#playlist li');
     let currentTrack = 0;
+    let isMuted = false; // Tracks the mute state
   
     function playTrack(index) {
-        if (index < 0 || index >= playlistItems.length) return;
-        if (currentTrack !== index) {
-          playlistItems[currentTrack].classList.remove('playing');
-          currentTrack = index;
-        }
-        const trackTitleElement = document.getElementById('trackTitle');
-        audio.src = playlistItems[currentTrack].getAttribute('data-src');
-        audio.load(); // Explicitly load the audio for the new source
-        audio.play();
-        trackTitleElement.textContent = playlistItems[currentTrack].textContent; // Update the track title
-        playPauseIcon.textContent = 'pause'; // Update the play/pause icon
-        playlistItems[currentTrack].classList.add('playing');
-    }
-    
-      
-      
+      if (index < 0 || index >= playlistItems.length) return;
+      currentTrack = index; // Update the current track index
   
-    // Consolidate play/pause button logic
+      const track = playlistItems[currentTrack];
+      const trackSrc = track.getAttribute('data-src');
+      const trackTitleElement = document.getElementById('trackTitle');
+  
+      if (audio.src !== trackSrc) { // Check if new source is different
+        audio.src = trackSrc;
+      }
+      
+      trackTitleElement.textContent = track.textContent; // Update the track title
+      audio.play();
+      playPauseIcon.textContent = 'pause'; // Update the play/pause icon
+  
+      // Update the playlist items for playing status
+      playlistItems.forEach(item => item.classList.remove('playing'));
+      track.classList.add('playing');
+    }
+  
     playPauseBtn.addEventListener('click', () => {
       if (audio.src) {
         if (audio.paused) {
@@ -47,10 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   
-    volumeControl.addEventListener('input', () => {
-      audio.volume = volumeControl.value;
-    });
-  
     playlistItems.forEach((item, index) => {
       item.addEventListener('click', () => {
         playTrack(index);
@@ -58,13 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   
     audio.addEventListener('ended', () => {
-      const nextTrack = (currentTrack + 1) % playlistItems.length;
-      playTrack(nextTrack);
+      playNextTrack();
     });
   
     const progressBar = document.getElementById('progressBar');
-
-    // Function to update the progress bar based on the current time
+    const progressContainer = document.getElementById('progressContainer');
+  
     function updateProgressBar() {
       const percentage = (audio.currentTime / audio.duration) * 100;
       progressBar.style.width = percentage + '%';
@@ -72,68 +68,42 @@ document.addEventListener('DOMContentLoaded', () => {
   
     audio.addEventListener('timeupdate', updateProgressBar);
   
-    // Function to allow clicking on the progress bar to seek
-    const progressContainer = document.getElementById('progressContainer');
     progressContainer.addEventListener('click', (e) => {
       const clickPosition = (e.offsetX / progressContainer.offsetWidth) * audio.duration;
       audio.currentTime = clickPosition;
-      
     });
   
-
-
-  // Function to format time in minutes and seconds
-  function formatTime(time) {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-  }
-
-  // Display total duration
-  audio.addEventListener('loadedmetadata', () => {
-    totalDurationElement.textContent = formatTime(audio.duration);
-  });
-
-  // Update current time
-  audio.addEventListener('timeupdate', () => {
-    currentTimeElement.textContent = formatTime(audio.currentTime);
-
-    // Also update the progress bar
-    const percentage = (audio.currentTime / audio.duration) * 100;
-    progressBar.value = percentage;
-    progressBar.setAttribute('max', 100);
-  });
-
-
-  function playNextTrack() {
-    const nextTrackIndex = (currentTrack + 1) % playlistItems.length;
-    playTrack(nextTrackIndex);
-  }
-
-  function playPreviousTrack() {
-    // This calculation ensures that the previous index wraps around to the last track if currently on the first track
-    const prevTrackIndex = (currentTrack - 1 + playlistItems.length) % playlistItems.length;
-    playTrack(prevTrackIndex);
-  }
-
-  nextBtn.addEventListener('click', playNextTrack);
-  prevBtn.addEventListener('click', playPreviousTrack);
-
-  const muteBtn = document.getElementById('muteBtn');
-  let isMuted = false; // Tracks the mute state
-
-  muteBtn.addEventListener('click', () => {
-    isMuted = !isMuted; // Toggle the mute state
-    audio.muted = isMuted; // Apply the mute state to the audio element
-    muteBtn.querySelector('i').textContent = isMuted ? 'volume_off' : 'volume_up'; // Update the button icon
-  });
-
-  const captions = [
-    { start: 0, end: 5, text: "Welcome to our audio presentation." },
-    { start: 5, end: 10, text: "We're glad you're here with us." },
-    { start: 10, end: 15, text: "Let's explore the main topic." },
-    // Add more captions as needed...
-  ];
+    function formatTime(time) {
+      const minutes = Math.floor(time / 60);
+      const seconds = Math.floor(time % 60);
+      return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    }
   
+    audio.addEventListener('loadedmetadata', () => {
+      totalDurationElement.textContent = formatTime(audio.duration);
+    });
+  
+    audio.addEventListener('timeupdate', () => {
+      currentTimeElement.textContent = formatTime(audio.currentTime);
+    });
+  
+    function playNextTrack() {
+      const nextTrackIndex = (currentTrack + 1) % playlistItems.length;
+      playTrack(nextTrackIndex);
+    }
+  
+    function playPreviousTrack() {
+      const prevTrackIndex = (currentTrack - 1 + playlistItems.length) % playlistItems.length;
+      playTrack(prevTrackIndex);
+    }
+  
+    nextBtn.addEventListener('click', playNextTrack);
+    prevBtn.addEventListener('click', playPreviousTrack);
+  
+    muteBtn.addEventListener('click', () => {
+      isMuted = !isMuted; // Toggle the mute state
+      audio.muted = isMuted; // Apply the mute state to the audio element
+      muteBtn.querySelector('i').textContent = isMuted ? 'volume_off' : 'volume_up'; // Update the button icon
+    });
   });
   
