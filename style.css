@@ -54,8 +54,8 @@ border: 1px dotted;
   
   .controls input[type=range]::-webkit-slider-runnable-track {
     width: 100%;
-    height: 2px;
-    background: #000; /* Lighter yellow for the track */
+    height: 8px;
+    background: #FFF176; /* Lighter yellow for the track */
     border-radius: 5px;
   }
   
