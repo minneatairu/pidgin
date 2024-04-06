@@ -22,11 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const trackTitleElement = document.getElementById('trackTitle');
         audio.src = playlistItems[currentTrack].getAttribute('data-src');
-        trackTitleElement.textContent = playlistItems[currentTrack].textContent; // Update the track title
+        audio.load(); // Explicitly load the audio for the new source
         audio.play();
+        trackTitleElement.textContent = playlistItems[currentTrack].textContent; // Update the track title
         playPauseIcon.textContent = 'pause'; // Update the play/pause icon
         playlistItems[currentTrack].classList.add('playing');
-      }
+    }
+    
       
       
   
