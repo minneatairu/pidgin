@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentTimeElement = document.getElementById('currentTime');
     const totalDurationElement = document.getElementById('totalDuration');
 
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+  
+
+
     let playlistItems = document.querySelectorAll('#playlist li');
     let currentTrack = 0;
   
@@ -91,5 +96,20 @@ document.addEventListener('DOMContentLoaded', () => {
     progressBar.value = percentage;
     progressBar.setAttribute('max', 100);
   });
+
+
+  function playNextTrack() {
+    const nextTrackIndex = (currentTrack + 1) % playlistItems.length;
+    playTrack(nextTrackIndex);
+  }
+
+  function playPreviousTrack() {
+    // This calculation ensures that the previous index wraps around to the last track if currently on the first track
+    const prevTrackIndex = (currentTrack - 1 + playlistItems.length) % playlistItems.length;
+    playTrack(prevTrackIndex);
+  }
+
+  nextBtn.addEventListener('click', playNextTrack);
+  prevBtn.addEventListener('click', playPreviousTrack);
   });
   
