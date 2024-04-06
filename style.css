@@ -1,8 +1,8 @@
 .audio-player {
     padding: 10px;
     background-color: #FFEB3B; /* Yellow color */
-    width: 300px;
-    border-radius: 5px;
+
+
   }
   
   .controls button, .controls input[type=range] {
@@ -27,9 +27,9 @@
   
   #playlist li {
     padding: 5px;
-    background-color: #FFF176; /* Light yellow */
     cursor: pointer;
     margin-top: 2px;
+    border-top: 1px dotted;
   }
   
   #playlist li.playing {
