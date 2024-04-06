@@ -44,17 +44,6 @@ border: 1px dotted;
     list-style: none;
     padding: 0;
   }
-  .controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Add other styles here as needed */
-  }
-  
-  /* Ensure the controls container has enough space around it for a balanced look */
-  .controls button {
-    margin: 0 10px; /* Adds horizontal space between the buttons */
-  }
   
   #playlist li {
     padding: 5px;

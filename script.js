@@ -20,13 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
           playlistItems[currentTrack].classList.remove('playing');
           currentTrack = index;
         }
-        const trackTitle = document.getElementById('trackTitle');
+        const trackTitleElement = document.getElementById('trackTitle');
         audio.src = playlistItems[currentTrack].getAttribute('data-src');
-        trackTitle.textContent = playlistItems[currentTrack].textContent; // Update the track title
+        trackTitleElement.textContent = playlistItems[currentTrack].textContent; // Update the track title
         audio.play();
-        playPauseIcon.textContent = 'pause'; // Correctly update the icon here
+        playPauseIcon.textContent = 'pause'; // Update the play/pause icon
         playlistItems[currentTrack].classList.add('playing');
       }
+      
       
   
     // Consolidate play/pause button logic
