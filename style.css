@@ -1,0 +1,22 @@
+#audioPlayer {
+    background-color: #FFD700; /* Yellow background */
+    border: 1px solid #000; /* Optional: adds a border */
+    width: 300px; /* Adjust based on your preference */
+    padding: 20px;
+}
+
+#audioPlayer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#audioPlayer li a {
+    color: black; /* Text color */
+    text-decoration: none;
+    padding: 5px;
+    display: block;
+}
+
+#audioPlayer li a:hover, #audioPlayer li.active a {
+    background-color: #FFA; /* Lighter yellow for hover/active */
+}
