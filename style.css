@@ -48,14 +48,14 @@ border: 1px dotted;
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background: #FDD835; /* Match the button color */
+    background: #000; /* Match the button color */
     cursor: pointer;
   }
   
   .controls input[type=range]::-webkit-slider-runnable-track {
     width: 100%;
-    height: 8px;
-    background: #FFF176; /* Lighter yellow for the track */
+    height: 1px;
+    background: #000; /* Lighter yellow for the track */
     border-radius: 5px;
   }
   
