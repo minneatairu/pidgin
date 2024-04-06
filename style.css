@@ -15,8 +15,8 @@ border: 1px dotted;
   .controls button, .controls input[type=range] {
     margin-bottom: 10px;
   }
-  span#totalDuration {position: absolute; right: 20px;}
-
+  span#totalDuration {position: absolute; right: 20px;    margin-top: 20px;}
+span#currentTime {position: absolute; left: 20px;    margin-top: 20px;}
   .controls button {
     background-color: #FFEB3B;
     border: none;
